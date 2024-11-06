@@ -30,7 +30,6 @@ namespace Demo.Gateway
                 .AddRemoteSchema(Inventory, ignoreRootTypes: true)
                 .AddRemoteSchema(Products, ignoreRootTypes: true)
                 .AddRemoteSchema(Reviews, ignoreRootTypes: true)
-                
                 .AddTypeExtensionsFromFile("./Stitching.graphql");
         }
 
