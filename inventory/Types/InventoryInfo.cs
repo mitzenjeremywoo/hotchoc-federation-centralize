@@ -1,6 +1,4 @@
-using System;
-
 namespace Inventory.Types
 {
-    public record InventoryInfo(int Upc, bool IsInStock);
+    public record InventoryInfo(int Id, bool IsInStock);
 }

@@ -15,9 +15,9 @@ namespace Inventory.Types
                 new InventoryInfo(1, true),
                 new InventoryInfo(2, false),
                 new InventoryInfo(3, true)
-            }.ToDictionary(t => t.Upc);
+            }.ToDictionary(t => t.Id);
         }
 
-        public InventoryInfo GetInventoryInfo(int upc) => _infos[upc];
+        public InventoryInfo GetInventoryInfo(int id) => _infos[id];
     }
 }
