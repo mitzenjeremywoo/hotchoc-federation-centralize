@@ -1,0 +1,12 @@
+.vs/
+accounts/bin/
+accounts/obj/
+gateway/.vscode/
+gateway/bin/
+gateway/obj/
+inventory/bin/
+inventory/obj/
+products/bin/
+products/obj/
+reviews/bin/
+reviews/obj/
