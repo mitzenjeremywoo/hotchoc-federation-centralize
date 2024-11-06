@@ -1,4 +1,3 @@
-using HotChocolate.Types;
 using HotChocolate.Types.Relay;
 using System.Collections.Generic;
 using System.Linq;
