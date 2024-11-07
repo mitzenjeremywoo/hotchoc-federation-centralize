@@ -11,7 +11,7 @@ builder.Services
 builder.Services
     .AddGraphQLServer()
     .AddTypes()
-    .AddGlobalObjectIdentification()
+   // .AddGlobalObjectIdentification()
     .RegisterService<ProductRepository>();
 
 var app = builder.Build();

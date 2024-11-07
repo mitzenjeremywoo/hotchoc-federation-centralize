@@ -19,7 +19,7 @@ type Query {
 }
 
 type Review implements Node {
-  id: ID!
+  id: Int!
   authorId: Int!
   upc: Int!
   body: String!

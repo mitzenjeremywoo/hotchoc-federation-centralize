@@ -38,7 +38,7 @@ namespace Reviews.Types
         [NodeResolver]
         public Review GetReview(int upc) => _reviews[upc];
         
-        [NodeResolver]
+        //[NodeResolver]
         public Author GetAuthor(int id) => _authors[id];
     }
 }

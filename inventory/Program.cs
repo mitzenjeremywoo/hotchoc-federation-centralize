@@ -11,7 +11,7 @@ builder.Services
 builder.Services
     .AddGraphQLServer()
     .AddTypes()
-    .AddGlobalObjectIdentification()
+ //   .AddGlobalObjectIdentification()
     .RegisterService<InventoryInfoRepository>();
 
 var app = builder.Build();

@@ -6,13 +6,12 @@ using Reviews.Types;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
-    .AddSingleton<ProductRepository>();
+    .AddSingleton<ReviewRepository>();
 
 builder.Services
     .AddGraphQLServer()
     .AddTypes()
-    .AddGlobalObjectIdentification()
-    .RegisterService<ProductRepository>()
+  //  .AddGlobalObjectIdentification()
     .RegisterService<ReviewRepository>();
 
 var app = builder.Build();

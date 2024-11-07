@@ -18,6 +18,8 @@ namespace Inventory.Types
             }.ToDictionary(t => t.Id);
         }
 
-        public InventoryInfo GetInventoryInfo(int id) => _infos[id];
+        public InventoryInfo GetInventory(int id) => _infos[id];
+
+        public IEnumerable<InventoryInfo> GetInventories() => _infos.Values;
     }
 }
