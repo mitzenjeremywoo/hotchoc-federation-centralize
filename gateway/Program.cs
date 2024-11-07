@@ -1,27 +1,29 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 
-namespace Demo.Gateway
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
-        }
+var builder = WebApplication.CreateBuilder(args);
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
-    }
-}
+const string Accounts = "accounts";
+const string Inventory = "inventory";
+const string Products = "products";
+const string Reviews = "reviews";
+
+builder.Services.AddHttpClient(Accounts, c => c.BaseAddress = new Uri("http://localhost:5051/graphql"));
+builder.Services.AddHttpClient(Inventory, c => c.BaseAddress = new Uri("http://localhost:5052/graphql"));
+builder.Services.AddHttpClient(Products, c => c.BaseAddress = new Uri("http://localhost:5053/graphql"));
+builder.Services.AddHttpClient(Reviews, c => c.BaseAddress = new Uri("http://localhost:5054/graphql"));
+
+builder.Services
+    .AddGraphQLServer()
+                //   .AddQueryType(d => d.Name("Query"))
+                .AddRemoteSchema(Accounts)
+                .AddRemoteSchema(Inventory)
+                .AddRemoteSchema(Products)
+                .AddRemoteSchema(Reviews)
+                .AddTypeExtensionsFromFile("./Stitching.graphql");
+
+var app = builder.Build();
+app.MapGraphQL();
+app.RunWithGraphQLCommands(args);

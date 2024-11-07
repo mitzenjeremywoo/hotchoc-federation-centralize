@@ -67,7 +67,43 @@ dotnet fusion compose -p .\gateway\gateway.zip -s .\reviews\
 
 please remember to edit and update your schema name
 subgraph-config.json 
-
+st
 {"subgraph":"reviews","http":{"baseAddress":"http://localhost:5054/"}}
 
+
+
+-------
+
+
+
+tye
+
+
+--- account level--
+services.AddSingleton(ConnectionMultiplexer.Connect("localhst:7000"))
+
+
+services.AddSingleton<UserRepository>().
+AddGraphqlServer()
+.AddQueryType<Query>()
+.InitializeOnStartup()
+.PublishSchemaDefinition(
+    c => c.SetName("accounts")
+         .IgnoreRootTypes
+         .AddTypeExtensionFromFile("stitching")
+         .PublishToRedis("Demo", sp => sp.GetRequiredService<ConnectionMultiplexer>)
+
+
+)
+
+--- 
+
+Gateway level 
+
+
+services.AddSingleton<UserRepository>().
+AddGraphqlServer()
+.AddQueryType(d => d.Name("Query"))
+.InitializeOnStartup()
+.AddRemoteSchemaFromRedis("Demo", sp => sp.GetRequiredService<ConnectionMultiplexer>)
 
